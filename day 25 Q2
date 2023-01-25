@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/maximum-matching-of-players-with-trainers/submissions/885031755/?fbclid=IwAR3mRsmkcErNMSF6VXB7J5U7B5NqFhOIz41dncDipM5ta3U7lbCPg45YWHE
+
+
+class Solution {
+public:
+    int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
+        sort(players.begin(),players.end());
+
+        sort(trainers.begin(), trainers.end());
+        int j =0,k=0;
+        int count =0;
+        while(k< players.size() && j< trainers.size()){
+            if(players[k]<=trainers[j]){ count++; j++;k++;}
+            else{ j++;}
+        }
+        return count ;
+    }
+};
