@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/find-the-k-beauty-of-a-number/?fbclid=IwAR12fNochG1qfxs1LxucN2DrelDHBdcK5F0fJkz93J1KLbcmhx7bYzvdih8
+
+class Solution {
+public:
+    int divisorSubstrings(int num, int k) {
+        int i =0, j =0 ,ans =0;
+
+        string str = to_string(num);
+        string win = "";
+
+        while(j < str.size()){
+            win += str[j];
+            if(j - i + 1 < k)j++;
+            else{
+                if(stoi(win)!=0 && num%stoi(win) == 0)ans++;
+
+                win = win.substr(1);
+                i++;
+                j++;
+            }
+        }
+        
+        return ans;
+    }
+};
