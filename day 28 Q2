@@ -1,26 +1,26 @@
-//https://leetcode.com/problems/find-the-k-beauty-of-a-number/submissions/886851521/?fbclid=IwAR12fNochG1qfxs1LxucN2DrelDHBdcK5F0fJkz93J1KLbcmhx7bYzvdih8
+//https://leetcode.com/problems/sum-of-unique-elements/?fbclid=IwAR2EpsH3vSeCUwx1uDOGAY0iB9mj4C2djOohJcXSmSIllir_p-aixks7k8Y
 
 
 class Solution {
 public:
-    int divisorSubstrings(int num, int k) {
-        int i =0, j =0 ,ans =0;
-
-        string str = to_string(num);
-        string win = "";
-
-        while(j < str.size()){
-            win += str[j];
-            if(j - i + 1 < k)j++;
+    int sumOfUnique(vector<int>& nums) {
+        int n = nums.size();
+        int sum =0;
+        sort(nums.begin(),nums.end());
+        if(n==1)return nums[0];
+        else if(n == 2) return nums[0]+nums[1];
+        else
+        for(int i =1; i < n -1;i++){
+            if(nums[i-1] == nums[i]||nums[i] == nums[i+1]){
+               continue;
+            }
             else{
-                if(stoi(win)!=0 && num%stoi(win) == 0)ans++;
-
-                win = win.substr(1);
-                i++;
-                j++;
+                sum +=nums[i];
             }
         }
-        
-        return ans;
+        if(nums[0] == nums[1] && nums[n-2] == nums[n-1] )return sum;
+        else if(nums[0] != nums[1] && nums[n-2] == nums[n-1] )return sum + nums[0];
+        else if(nums[0] == nums[1] && nums[n-2] != nums[n-1] )return sum + nums[n-1];
+        else return sum + nums[0] + nums[n-1];
     }
 };
