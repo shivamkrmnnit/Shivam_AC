@@ -1,0 +1,22 @@
+//https://practice.geeksforgeeks.org/problems/modified-numbers-and-queries0904/1?fbclid=IwAR2Z98CjWrlN4iMcl28-QXU5FqBQoCANHYCXlb5VfEREr5PKNKeuz2xnFBQ
+
+
+class Solution {
+  public:
+    int sumOfAll(int l, int r){
+      
+        vector<int> sieve(r+1, 1);
+        sieve[0]=sieve[1]=0;
+        int sum=0;
+        for(int i=2; i<=r; i++){
+            if(sieve[i]==1){
+                if(i>=l) sum+=i;
+                for(int j=2*i; j<=r; j+=i){
+                    sieve[j]=0;
+                    if(j>=l) sum+=i;
+                }
+            }
+        }
+        return sum;
+    }
+};
